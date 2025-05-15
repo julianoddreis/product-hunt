@@ -1,6 +1,7 @@
-import { Fragment } from "react/jsx-runtime";
-import "./App.css";
-import { usePosts } from "./queries/posts";
+import { Fragment } from "react";
+
+import { usePosts } from "@/queries/posts";
+import { Post } from "@/components/post";
 
 function App() {
   const { data, isLoading, error } = usePosts();
@@ -11,7 +12,13 @@ function App() {
 
       {error && <div>Error: {error.message}</div>}
 
-      {data && <div>{JSON.stringify(data)}</div>}
+      {data && (
+        <div>
+          {data.posts.map(post => (
+            <Post key={post.id} post={post} />
+          ))}
+        </div>
+      )}
     </Fragment>
   );
 }
