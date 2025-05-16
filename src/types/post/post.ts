@@ -3,3 +3,8 @@ export interface IPost {
   readonly name: string;
   readonly description: string;
 }
+
+export enum PostsOrder {
+  Newest = "NEWEST",
+  Ranking = "RANKING",
+}

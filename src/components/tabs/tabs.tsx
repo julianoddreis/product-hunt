@@ -7,7 +7,7 @@ interface TabsContextType {
   readonly setCurrent: (index: number) => void;
 }
 
-const TabsContext = createContext<TabsContextType | undefined>(undefined);
+const TabsContext = createContext<TabsContextType | null>(null);
 
 interface TabsProps {
   readonly children: ReactNode;

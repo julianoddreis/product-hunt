@@ -561,10 +561,22 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.40.2.tgz#8dae04d01a2cbd84d6297d99356674c6b993f0fc"
   integrity sha512-bwspbWB04XJpeElvsp+DCylKfF4trJDa2Y9Go8O6A7YLX2LIKGcNK/CYImJN6ZP4DcuOHB4Utl3iCbnR62DudA==
 
+"@tanstack/pacer@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/pacer/-/pacer-0.6.0.tgz#fd8f395f7c68387ca9f929ae3f2b50d03a052536"
+  integrity sha512-uunCU7ABQoq4pgujY3gRerPa6jp+K7/taAikYcY/xJTH+PJZu0YzOulMpJRsLVBHFd2kz7cAs3eOq1jA4Q9rCQ==
+
 "@tanstack/query-core@5.76.0":
   version "5.76.0"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.76.0.tgz#3b4d5d34ce307ba0cf7d1a3e90d7adcdc6c46be0"
   integrity sha512-FN375hb8ctzfNAlex5gHI6+WDXTNpe0nbxp/d2YJtnP+IBM6OUm7zcaoCW6T63BawGOYZBbKC0iPvr41TteNVg==
+
+"@tanstack/react-pacer@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-pacer/-/react-pacer-0.6.0.tgz#0801df0dde66d4f6cf6da8061b8acdcf84d2db0e"
+  integrity sha512-f0U7oySn6yQKmbe+np0pxNt93PJGmhsWy5hxWpRpzVCbm/hUQyRrRXk2Ai2/KJiB0n7o/Q2KRofYWo6TthwksQ==
+  dependencies:
+    "@tanstack/pacer" "0.6.0"
 
 "@tanstack/react-query@^5.76.1":
   version "5.76.1"
