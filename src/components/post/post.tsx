@@ -1,4 +1,6 @@
-import type { IPost } from "@/domain/post";
+import { Link } from "@tanstack/react-router";
+
+import type { IPost } from "@/types/post";
 
 interface PostProps {
   readonly post: IPost;
@@ -6,5 +8,12 @@ interface PostProps {
 }
 
 export function Post({ post }: PostProps) {
-  return <div>{post.name}</div>;
+  return (
+    <Link params={{ postId: post.id }} to={"/posts/$postId"}>
+      <div>
+        <h1>{post.name}</h1>
+        <p>{post.description}</p>
+      </div>
+    </Link>
+  );
 }
