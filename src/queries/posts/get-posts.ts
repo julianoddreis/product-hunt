@@ -8,12 +8,15 @@ import { type IPageInfo } from "@/types/page-info";
 
 const GetPostsSchema = z.object({
   posts: z.object({
-    edges: z.array(
+    nodes: z.array(
       z.object({
-        node: z.object({
-          id: z.string(),
-          name: z.string(),
-          description: z.string(),
+        id: z.string(),
+        name: z.string(),
+        description: z.string(),
+        isVoted: z.boolean(),
+        votesCount: z.number(),
+        thumbnail: z.object({
+          url: z.string(),
         }),
       })
     ),
@@ -29,11 +32,14 @@ const GetPostsSchema = z.object({
 const GET_POSTS = gql`
   query GetPosts($order: PostsOrder!, $after: String, $topic: String) {
     posts(first: 10, order: $order, after: $after, topic: $topic) {
-      edges {
-        node {
-          id
-          name
-          description
+      nodes {
+        id
+        name
+        description
+        isVoted
+        votesCount
+        thumbnail {
+          url
         }
       }
       pageInfo {
@@ -64,10 +70,10 @@ export function usePosts({ order, after, topic }: Params) {
       const response = await graphqlClient.request(GET_POSTS, { order, after, topic });
       const parsedResponse = GetPostsSchema.parse(response);
 
-      const { edges, pageInfo } = parsedResponse.posts;
+      const { nodes, pageInfo } = parsedResponse.posts;
 
       return {
-        posts: edges.map(edge => edge.node),
+        posts: nodes,
         pageInfo,
       };
     },

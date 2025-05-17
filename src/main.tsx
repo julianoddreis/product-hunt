@@ -5,6 +5,7 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 import { SearchProvider } from "@/providers/search";
 
+import { GlobalStyle } from "./global-styles";
 import { routeTree } from "./routeTree.gen";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <SearchProvider>
+        <GlobalStyle />
         <RouterProvider router={router} />
       </SearchProvider>
     </QueryClientProvider>

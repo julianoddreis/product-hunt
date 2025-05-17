@@ -10,6 +10,11 @@ const GetPostByIdSchema = z.object({
     id: z.string(),
     name: z.string(),
     description: z.string(),
+    isVoted: z.boolean(),
+    votesCount: z.number(),
+    thumbnail: z.object({
+      url: z.string(),
+    }),
   }),
 });
 
@@ -19,6 +24,11 @@ const GET_POST_BY_ID = gql`
       id
       name
       description
+      isVoted
+      votesCount
+      thumbnail {
+        url
+      }
     }
   }
 `;
@@ -33,7 +43,11 @@ export function usePostById({ id }: Params) {
     queryFn: async () => {
       const response = await graphqlClient.request(GET_POST_BY_ID, { id });
       const parsedResponse = GetPostByIdSchema.parse(response);
-      return parsedResponse.post;
+
+      return {
+        ...parsedResponse.post,
+        image: parsedResponse.post.thumbnail.url,
+      };
     },
   });
 }

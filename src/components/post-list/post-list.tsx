@@ -3,6 +3,8 @@ import { Post } from "@/components/post";
 import type { PostsOrder } from "@/types/post";
 import { useSearch } from "@/providers/search";
 
+import { List } from "./post-list.styles";
+
 interface PostListProps {
   readonly order: PostsOrder;
 }
@@ -19,5 +21,5 @@ export function PostList({ order }: PostListProps) {
     return <div>Error: {error.message}</div>;
   }
 
-  return <div>{data?.posts.map(post => <Post key={post.id} post={post} />)}</div>;
+  return <List>{data?.posts.map(post => <Post key={post.id} post={post} />)}</List>;
 }
