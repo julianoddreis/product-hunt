@@ -1,13 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { getRouteApi } from "@tanstack/react-router";
 
-import { PostDetails } from "@/pages/post-details";
+import { usePostById } from "@/queries/posts";
 
-export const Route = createFileRoute("/posts/$postId")({
-  component: PostDetails,
-});
+const route = getRouteApi("/posts/$postId");
 
-function PostComponent() {
-  const { postId } = Route.useParams();
+export function PostDetails() {
+  const { postId } = route.useParams();
 
   const { data, isLoading, isError } = usePostById({ id: postId });
 

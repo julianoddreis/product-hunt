@@ -3,29 +3,13 @@ import { gql } from "graphql-request";
 import { z } from "zod";
 
 import { graphqlClient } from "@/client/graphql";
-import { type IPost, type PostsOrder } from "@/types/post";
-import { type IPageInfo } from "@/types/page-info";
+import { PostSchema, type IPost, type PostsOrder } from "@/types/post";
+import { PageInfoSchema, type IPageInfo } from "@/types/page-info";
 
 const GetPostsSchema = z.object({
   posts: z.object({
-    nodes: z.array(
-      z.object({
-        id: z.string(),
-        name: z.string(),
-        description: z.string(),
-        isVoted: z.boolean(),
-        votesCount: z.number(),
-        thumbnail: z.object({
-          url: z.string(),
-        }),
-      })
-    ),
-    pageInfo: z.object({
-      hasNextPage: z.boolean(),
-      hasPreviousPage: z.boolean(),
-      startCursor: z.nullable(z.string()),
-      endCursor: z.nullable(z.string()),
-    }),
+    nodes: z.array(PostSchema),
+    pageInfo: PageInfoSchema,
   }),
 });
 
@@ -36,7 +20,6 @@ const GET_POSTS = gql`
         id
         name
         description
-        isVoted
         votesCount
         thumbnail {
           url

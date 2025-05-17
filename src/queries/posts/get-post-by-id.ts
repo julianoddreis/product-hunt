@@ -3,19 +3,10 @@ import { gql } from "graphql-request";
 import { z } from "zod";
 
 import { graphqlClient } from "@/client/graphql";
-import { type IPost } from "@/types/post";
+import { PostSchema, type IPost } from "@/types/post";
 
 const GetPostByIdSchema = z.object({
-  post: z.object({
-    id: z.string(),
-    name: z.string(),
-    description: z.string(),
-    isVoted: z.boolean(),
-    votesCount: z.number(),
-    thumbnail: z.object({
-      url: z.string(),
-    }),
-  }),
+  post: PostSchema,
 });
 
 const GET_POST_BY_ID = gql`
@@ -24,7 +15,6 @@ const GET_POST_BY_ID = gql`
       id
       name
       description
-      isVoted
       votesCount
       thumbnail {
         url
@@ -39,15 +29,10 @@ interface Params {
 
 export function usePostById({ id }: Params) {
   return useQuery<IPost>({
-    queryKey: ["posts", id],
+    queryKey: ["post", id],
     queryFn: async () => {
       const response = await graphqlClient.request(GET_POST_BY_ID, { id });
-      const parsedResponse = GetPostByIdSchema.parse(response);
-
-      return {
-        ...parsedResponse.post,
-        image: parsedResponse.post.thumbnail.url,
-      };
+      return GetPostByIdSchema.parse(response).post;
     },
   });
 }

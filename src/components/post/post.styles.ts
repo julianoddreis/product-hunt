@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import { Link, type LinkProps } from "@tanstack/react-router";
 
-export const PostComponent = styled.div`
+export const PostComponent = styled(Link)<LinkProps>`
   display: flex;
   align-items: center;
   padding: 1rem;
   border: 1px solid #e0e0e0;
   border-radius: 0.5rem;
+  text-decoration: none;
+  position: relative;
 `;
 
 export const Thumbnail = styled.img`
@@ -38,12 +41,28 @@ export const Description = styled.span`
   white-space: nowrap;
 `;
 
-export const Votes = styled.button<{ isVoted: boolean }>`
-  transform: translateX(30px);
+export const Votes = styled.div`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: -20px;
+  top: 16px;
   border: 1px solid #e0e0e0;
   border-radius: 0.5rem;
-  padding: 0.5rem;
   font-size: 0.8rem;
   color: #000;
-  background-color: ${({ isVoted }) => (isVoted ? "red" : "#fff")};
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+`;
+
+export const UpIcon = styled.div`
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7.5px solid black;
 `;
