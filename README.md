@@ -1,54 +1,48 @@
-# React + TypeScript + Vite
+# Product Hunt
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application built with cutting-edge technologies to provide a seamless user experience.
 
-Currently, two official plugins are available:
+## 🚀 Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite**: Next-generation frontend tooling for blazing fast development and optimized builds
+- **TypeScript**: Adds static type definitions to JavaScript, improving code quality and developer experience
+- **TanStack Query**: Powerful asynchronous state management
+- **TanStack Router**: Type-safe routing solution with excellent developer experience
+- **Zod**: TypeScript-first schema validation with static type inference
+- **GraphQL**: Modern API query language for efficient data fetching
+- **Styled Components**: CSS-in-JS styling solution for component-based styling
+- **ESLint**: Static code analysis tool for identifying and fixing problems in JavaScript/TypeScript code
+- **Prettier**: Code formatter that enforces a consistent style across your codebase
 
-## Expanding the ESLint configuration
+## 🛠️ Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Clone the repository
+2. Copy the environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+3. Setup the env `VITE_PRODUCT_HUNT_BEARER_TOKE` with your token.
+   You can get this token creating one application at `https://www.producthunt.com/v2/oauth/applications` and requesting via curl
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+   ```bash
+     curl -X POST https://api.producthunt.com/v2/oauth/token \
+     -H "Content-Type: application/json" \
+     -d '{
+       "client_id": "YOUR_CLIENT_ID",
+       "client_secret": "YOUR_CLIENT_SECRET",
+       "grant_type": "client_credentials"
+     }'
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+4. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+   ```bash
+   yarn
+   ```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+5. Start the development server:
+   ```bash
+   yarn dev
+   ```
+
+The application will be available at `http://localhost:5173` (or the port specified in your environment variables).
