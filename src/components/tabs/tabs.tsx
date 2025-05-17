@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-import "./tabs.css";
+import { TabsContainer, TabListComponent, TabComponent, TabPanelComponent } from "./tabs.styles";
 
 interface TabsContextType {
   readonly current: number;
@@ -18,7 +18,7 @@ export function Tabs({ children }: TabsProps) {
 
   return (
     <TabsContext.Provider value={{ current, setCurrent }}>
-      <div className="tabs">{children}</div>
+      <TabsContainer>{children}</TabsContainer>
     </TabsContext.Provider>
   );
 }
@@ -28,7 +28,7 @@ interface TabListProps {
 }
 
 export function TabList({ children }: TabListProps) {
-  return <div className="tab-list">{children}</div>;
+  return <TabListComponent>{children}</TabListComponent>;
 }
 
 interface TabProps {
@@ -48,15 +48,16 @@ export function Tab({ children, index }: TabProps) {
   const isSelected = current === index;
 
   return (
-    <button
-      className={`tab ${isSelected ? "selected" : ""}`}
+    <TabComponent
+      isSelected={isSelected}
       onClick={() => setCurrent(index)}
+      aria-label={`tab-${index}`}
       role="tab"
       aria-selected={isSelected}
       aria-controls={`panel-${index}`}
     >
       {children}
-    </button>
+    </TabComponent>
   );
 }
 
@@ -81,13 +82,8 @@ export function TabPanel({ children, index }: TabPanelProps) {
   }
 
   return (
-    <div
-      role="tabpanel"
-      id={`panel-${index}`}
-      aria-labelledby={`tab-${index}`}
-      className="tab-panel"
-    >
+    <TabPanelComponent role="tabpanel" id={`panel-${index}`} aria-labelledby={`tab-${index}`}>
       {children}
-    </div>
+    </TabPanelComponent>
   );
 }
