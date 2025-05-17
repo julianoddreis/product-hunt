@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const TabsContainer = styled.div`
-  width: 100%;
-  flex: 1;
-`;
-
 export const TabListComponent = styled.div`
   display: flex;
   gap: 1rem;

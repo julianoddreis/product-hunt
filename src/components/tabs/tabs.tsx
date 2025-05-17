@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
-import { TabsContainer, TabListComponent, TabComponent, TabPanelComponent } from "./tabs.styles";
+import { TabListComponent, TabComponent, TabPanelComponent } from "./tabs.styles";
 
 interface TabsContextType {
   readonly current: number;
@@ -16,11 +16,7 @@ interface TabsProps {
 export function Tabs({ children }: TabsProps) {
   const [current, setCurrent] = useState(0);
 
-  return (
-    <TabsContext.Provider value={{ current, setCurrent }}>
-      <TabsContainer>{children}</TabsContainer>
-    </TabsContext.Provider>
-  );
+  return <TabsContext.Provider value={{ current, setCurrent }}>{children}</TabsContext.Provider>;
 }
 
 interface TabListProps {
