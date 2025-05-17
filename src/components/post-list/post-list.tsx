@@ -35,21 +35,21 @@ export function PostList({ order }: PostListProps) {
     }
   }, [hasNextPage, isFetchingNextPage, isIntersecting, fetchNextPage]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   if (error) {
     return <div>Error: {error.message}</div>;
   }
 
   return (
     <List>
-      {data?.pages.map(page => page.posts.map(post => <Post key={post.id} post={post} />))}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        data?.pages.map(page => page.posts.map(post => <Post key={post.id} post={post} />))
+      )}
 
       {isFetchingNextPage && <Loading />}
 
-      {hasNextPage && <div ref={loadMoreRef} />}
+      <div ref={loadMoreRef} />
     </List>
   );
 }
