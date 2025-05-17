@@ -5,4 +5,5 @@ export const List = styled.div`
   flex-direction: column;
   gap: 1rem;
   padding: 0 0.5rem;
+  padding-bottom: 1rem;
 `;

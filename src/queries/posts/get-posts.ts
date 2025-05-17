@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { gql } from "graphql-request";
 import { z } from "zod";
 
@@ -47,10 +47,12 @@ interface IGetPostsResponse {
 }
 
 export function usePosts({ order, after, topic }: Params) {
-  return useQuery<IGetPostsResponse>({
+  return useInfiniteQuery<IGetPostsResponse>({
     queryKey: ["posts", order, after, topic],
-    queryFn: async () => {
-      const response = await graphqlClient.request(GET_POSTS, { order, after, topic });
+    initialPageParam: null,
+    getNextPageParam: lastPage => lastPage.pageInfo.endCursor,
+    queryFn: async ({ pageParam }) => {
+      const response = await graphqlClient.request(GET_POSTS, { order, after: pageParam, topic });
       const parsedResponse = GetPostsSchema.parse(response);
 
       const { nodes, pageInfo } = parsedResponse.posts;
