@@ -2,6 +2,7 @@ import { usePosts } from "@/queries/posts";
 import { Post } from "@/components/post";
 import type { PostsOrder } from "@/types/post";
 import { useSearch } from "@/providers/search";
+import { Loading } from "@/components/loading";
 
 import { List } from "./post-list.styles";
 
@@ -14,7 +15,7 @@ export function PostList({ order }: PostListProps) {
   const { data, isLoading, error } = usePosts({ order, topic: debouncedSearch });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (error) {

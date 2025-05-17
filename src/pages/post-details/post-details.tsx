@@ -1,6 +1,7 @@
 import { getRouteApi } from "@tanstack/react-router";
 
 import { usePostById } from "@/queries/posts";
+import { Loading } from "@/components/loading";
 
 const route = getRouteApi("/posts/$postId");
 
@@ -10,7 +11,7 @@ export function PostDetails() {
   const { data, isLoading, isError } = usePostById({ id: postId });
 
   if (isLoading) {
-    return <PostSkeleton />;
+    return <Loading />;
   }
 
   if (isError) {
@@ -24,8 +25,4 @@ export function PostDetails() {
       <p>{data?.description}</p>
     </div>
   );
-}
-
-function PostSkeleton() {
-  return <div>Loading...</div>;
 }
