@@ -14,26 +14,16 @@ interface PostListProps {
 }
 
 export function PostList({ order }: PostListProps) {
-  const loadMoreRef = useRef<HTMLDivElement>(null);
-
   const { debouncedSearch } = useSearch();
 
-  const { data, error, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = usePosts({
+  const { data, error, fetchNextPage, hasNextPage, isPending, isFetchingNextPage } = usePosts({
     order,
     topic: debouncedSearch,
   });
 
-  const { isIntersecting } = useIntersectionObserver(loadMoreRef);
-
-  useEffect(() => {
-    if (!hasNextPage || isFetchingNextPage) {
-      return;
-    }
-
-    if (isIntersecting) {
-      fetchNextPage();
-    }
-  }, [hasNextPage, isFetchingNextPage, isIntersecting, fetchNextPage]);
+  if (isPending) {
+    return <Loading />;
+  }
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -41,15 +31,36 @@ export function PostList({ order }: PostListProps) {
 
   return (
     <List>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        data?.pages.map(page => page.posts.map(post => <Post key={post.id} post={post} />))
-      )}
+      {data.pages.map(page => page.posts.map(post => <Post key={post.id} post={post} />))}
 
       {isFetchingNextPage && <Loading />}
 
-      <div ref={loadMoreRef} />
+      {hasNextPage && (
+        <EndRefComponent isFetchingNextPage={isFetchingNextPage} fetchNextPage={fetchNextPage} />
+      )}
     </List>
   );
+}
+
+interface EndRefComponentProps {
+  readonly isFetchingNextPage: boolean;
+  readonly fetchNextPage: () => void;
+}
+
+function EndRefComponent({ isFetchingNextPage, fetchNextPage }: EndRefComponentProps) {
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const { isIntersecting } = useIntersectionObserver(loadMoreRef);
+
+  useEffect(() => {
+    if (isFetchingNextPage) {
+      return;
+    }
+
+    if (isIntersecting) {
+      fetchNextPage();
+    }
+  }, [isFetchingNextPage, isIntersecting, fetchNextPage]);
+
+  return <div ref={loadMoreRef} />;
 }
