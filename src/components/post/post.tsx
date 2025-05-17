@@ -8,6 +8,7 @@ import {
   Title,
   Votes,
   UpIcon,
+  Card,
 } from "./post.styles";
 
 interface PostProps {
@@ -18,11 +19,13 @@ interface PostProps {
 export function Post({ post }: PostProps) {
   return (
     <PostComponent to={"/posts/$postId"} params={{ postId: post.id }}>
-      <Thumbnail src={post.thumbnail.url} alt={post.name} />
-      <Content>
-        <Title>{post.name}</Title>
-        <Description>{post.description}</Description>
-      </Content>
+      <Card>
+        <Thumbnail src={post.thumbnail.url} alt={post.name} />
+        <Content>
+          <Title>{post.name}</Title>
+          <Description>{post.description}</Description>
+        </Content>
+      </Card>
       <Votes>
         <UpIcon />
         {post.votesCount}
