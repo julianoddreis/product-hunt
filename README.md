@@ -13,6 +13,7 @@ A modern web application built with cutting-edge technologies to provide a seaml
 - **Styled Components**: CSS-in-JS styling solution for component-based styling
 - **ESLint**: Static code analysis tool for identifying and fixing problems in JavaScript/TypeScript code
 - **Prettier**: Code formatter that enforces a consistent style across your codebase
+- **Vitest and Testing Library**: To handle component tests
 
 ## 🛠️ Setup
 
@@ -44,5 +45,10 @@ A modern web application built with cutting-edge technologies to provide a seaml
    ```bash
    yarn dev
    ```
+   The application will be available at `http://localhost:5173` (or the port specified in your environment variables).
 
-The application will be available at `http://localhost:5173` (or the port specified in your environment variables).
+To run tests:
+
+```bash
+yarn test
+```
