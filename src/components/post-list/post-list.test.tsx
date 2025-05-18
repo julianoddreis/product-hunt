@@ -2,7 +2,7 @@ import type { InfiniteData, UseInfiniteQueryResult } from "@tanstack/react-query
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { render } from "@testing-library/react";
 
-import { PostsOrder } from "@/types/post";
+import { PostsOrder, type IPost } from "@/types/post";
 import { SearchProvider } from "@/providers/search";
 import * as usePostsModule from "@/queries/posts";
 
@@ -39,6 +39,14 @@ describe("PostList", () => {
       expect(getByText("Post 1")).toBeInTheDocument();
     });
   });
+
+  describe("when the content is empty", () => {
+    test("should show empty state", () => {
+      const { getByText } = renderEmpty();
+
+      expect(getByText("No posts found")).toBeInTheDocument();
+    });
+  });
 });
 
 function renderLoading() {
@@ -61,6 +69,17 @@ function renderLoaded() {
     error: null,
     data: {
       pages: [{ posts: [{ id: "1", name: "Post 1", thumbnail: { url: "foo.bar" } }] }],
+    },
+  } as UseInfiniteQueryResult<InfiniteData<IGetPostsResponse>>);
+  return baseRender();
+}
+
+function renderEmpty() {
+  vi.spyOn(usePostsModule, "usePosts").mockReturnValue({
+    isPending: false,
+    error: null,
+    data: {
+      pages: [{ posts: [] as Array<IPost> }],
     },
   } as UseInfiniteQueryResult<InfiniteData<IGetPostsResponse>>);
   return baseRender();

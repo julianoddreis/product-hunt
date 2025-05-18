@@ -23,5 +23,5 @@ export const TabComponent = styled.button<{ isSelected: boolean }>`
 `;
 
 export const TabPanelComponent = styled.div`
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
 `;

@@ -33,6 +33,10 @@ export function PostList({ order }: PostListProps) {
     );
   }
 
+  if (data.pages[0].posts.length === 0) {
+    return <div>No posts found</div>;
+  }
+
   return (
     <List>
       {data.pages.map(page => page.posts.map(post => <Post key={post.id} post={post} />))}

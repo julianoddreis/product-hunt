@@ -23,14 +23,18 @@ const route = getRouteApi("/posts/$postId");
 export function PostDetails() {
   const { postId } = route.useParams();
 
-  const { data, isPending, isError } = usePostById({ id: postId });
+  const { data, isPending, error } = usePostById({ id: postId });
 
   if (isPending) {
     return <Loading />;
   }
 
-  if (isError) {
-    return <div>Error</div>;
+  if (error) {
+    return (
+      <div>
+        Error: <span>{error.message}</span>
+      </div>
+    );
   }
 
   return (
@@ -47,9 +51,7 @@ export function PostDetails() {
         <Card>
           <CardHeader>
             <Thumbnail src={data.thumbnail.url} alt={data.name} size={3} />
-            <div>
-              <Title>{data.name}</Title>
-            </div>
+            <Title>{data.name}</Title>
           </CardHeader>
           <Description>{data.description}</Description>
         </Card>
