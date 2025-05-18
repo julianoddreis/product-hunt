@@ -3,10 +3,10 @@ import { gql } from "graphql-request";
 import { z } from "zod";
 
 import { graphqlClient } from "@/client/graphql";
-import { PostSchema, type IPost } from "@/types/post";
+import { PostDetailsSchema, type IPostDetails } from "@/types/post";
 
 const GetPostByIdSchema = z.object({
-  post: PostSchema,
+  post: PostDetailsSchema,
 });
 
 const GET_POST_BY_ID = gql`
@@ -19,6 +19,10 @@ const GET_POST_BY_ID = gql`
       thumbnail {
         url
       }
+      media {
+        url
+      }
+      website
     }
   }
 `;
@@ -28,7 +32,7 @@ interface Params {
 }
 
 export function usePostById({ id }: Params) {
-  return useQuery<IPost>({
+  return useQuery<IPostDetails>({
     queryKey: ["post", id],
     queryFn: async () => {
       const response = await graphqlClient.request(GET_POST_BY_ID, { id });

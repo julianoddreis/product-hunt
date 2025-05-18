@@ -10,6 +10,13 @@ export interface IPost {
   };
 }
 
+export interface IPostDetails extends IPost {
+  readonly media: Array<{
+    readonly url: string;
+  }>;
+  readonly website: string;
+}
+
 export enum PostsOrder {
   Newest = "NEWEST",
   Ranking = "RANKING",
@@ -23,4 +30,18 @@ export const PostSchema = z.object({
   thumbnail: z.object({
     url: z.string(),
   }),
+  media: z.array(
+    z.object({
+      url: z.string(),
+    })
+  ),
+});
+
+export const PostDetailsSchema = PostSchema.extend({
+  media: z.array(
+    z.object({
+      url: z.string(),
+    })
+  ),
+  website: z.string(),
 });

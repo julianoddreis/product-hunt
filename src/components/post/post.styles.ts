@@ -15,14 +15,6 @@ export const Card = styled.div`
   border-radius: 0.5rem;
 `;
 
-export const Thumbnail = styled.img`
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.5rem;
-  object-fit: cover;
-  margin-right: 0.5rem;
-`;
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;

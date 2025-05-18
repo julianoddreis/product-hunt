@@ -1,15 +1,7 @@
 import type { IPost } from "@/types/post";
+import { Thumbnail } from "@/components/thumbail";
 
-import {
-  PostComponent,
-  Content,
-  Description,
-  Thumbnail,
-  Title,
-  Votes,
-  UpIcon,
-  Card,
-} from "./post.styles";
+import { PostComponent, Content, Description, Title, Votes, UpIcon, Card } from "./post.styles";
 
 interface PostProps {
   readonly post: IPost;
