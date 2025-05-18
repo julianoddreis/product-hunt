@@ -10,8 +10,8 @@ export function HomePage() {
       <NavBar />
       <Tabs>
         <TabList>
-          <Tab index={0}>Popular</Tab>
-          <Tab index={1}>Newest</Tab>
+          <Tab index={0} label="Popular" />
+          <Tab index={1} label="Newest" />
         </TabList>
         <ScrollArea>
           <TabPanel index={0}>

@@ -4,10 +4,10 @@ import { render } from "@testing-library/react";
 
 import { PostsOrder, type IPost } from "@/types/post";
 import { SearchProvider } from "@/providers/search";
+import type { IGetPostsResponse } from "@/queries/posts";
 import * as usePostsModule from "@/queries/posts";
 
 import { PostList } from "./post-list";
-import type { IGetPostsResponse } from "@/queries/posts";
 
 vi.mock("@/queries/posts");
 

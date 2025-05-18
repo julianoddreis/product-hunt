@@ -28,11 +28,11 @@ export function TabList({ children }: TabListProps) {
 }
 
 interface TabProps {
-  readonly children: ReactNode;
+  readonly label: string;
   readonly index: number;
 }
 
-export function Tab({ children, index }: TabProps) {
+export function Tab({ label, index }: TabProps) {
   const context = useContext(TabsContext);
 
   if (!context) {
@@ -47,12 +47,12 @@ export function Tab({ children, index }: TabProps) {
     <TabComponent
       isSelected={isSelected}
       onClick={() => setCurrent(index)}
-      aria-label={`tab-${index}`}
+      aria-label={label}
       role="tab"
       aria-selected={isSelected}
       aria-controls={`panel-${index}`}
     >
-      {children}
+      {label}
     </TabComponent>
   );
 }
