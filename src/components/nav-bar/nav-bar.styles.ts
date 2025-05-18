@@ -6,14 +6,7 @@ export const NavBarComponent = styled.div`
   justify-content: space-between;
   padding: 1rem;
   gap: 1rem;
-`;
-
-export const Avatar = styled.img`
-  min-width: 32px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #c0c0c0;
+  background-color: #fff;
 `;
 
 export const Input = styled.input`

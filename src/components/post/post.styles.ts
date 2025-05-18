@@ -13,6 +13,7 @@ export const Card = styled.div`
   padding: 1rem;
   border: 1px solid #e0e0e0;
   border-radius: 0.5rem;
+  background-color: #fff;
 `;
 
 export const Content = styled.div`

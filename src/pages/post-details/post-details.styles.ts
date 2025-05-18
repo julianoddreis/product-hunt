@@ -1,17 +1,13 @@
 import styled from "styled-components";
 
-export const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0 1rem;
-  min-height: 100vh;
-  background-color: #f0f0f0;
-`;
-
 export const Header = styled.div`
   padding: 1rem;
   padding-top: 2rem;
   margin-bottom: 1rem;
+`;
+
+export const Spacing = styled.div`
+  padding: 0 1rem;
 `;
 
 export const Media = styled.img`
@@ -19,7 +15,6 @@ export const Media = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 0.5rem;
-  margin-bottom: 2rem;
 `;
 
 export const Card = styled.div`
@@ -28,6 +23,7 @@ export const Card = styled.div`
   padding: 1rem;
   background-color: #fff;
   border-radius: 0.5rem;
+  margin: 1rem;
 `;
 
 export const CardHeader = styled.div`
@@ -49,10 +45,6 @@ export const Description = styled.p`
 `;
 
 export const Footer = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;

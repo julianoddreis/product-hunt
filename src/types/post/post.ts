@@ -30,11 +30,6 @@ export const PostSchema = z.object({
   thumbnail: z.object({
     url: z.string(),
   }),
-  media: z.array(
-    z.object({
-      url: z.string(),
-    })
-  ),
 });
 
 export const PostDetailsSchema = PostSchema.extend({

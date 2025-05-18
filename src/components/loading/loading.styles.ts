@@ -5,6 +5,7 @@ export const LoadingComponent = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  padding: 1rem;
 `;
 
 export const Spinner = styled.div`

@@ -4,7 +4,7 @@ export const TabListComponent = styled.div`
   display: flex;
   gap: 1rem;
   border-bottom: 1px solid #e2e8f0;
-  margin-bottom: 1rem;
+  background-color: #fff;
 `;
 
 export const TabComponent = styled.button<{ isSelected: boolean }>`
