@@ -2,6 +2,9 @@ import { getRouteApi } from "@tanstack/react-router";
 
 import { usePostById } from "@/queries/posts";
 import { Loading } from "@/components/loading";
+import { Thumbnail } from "@/components/thumbail";
+import { BackButton } from "@/components/back-button";
+import { ScrollArea } from "@/components/scroll-area";
 
 import {
   Card,
@@ -14,9 +17,6 @@ import {
   Footer,
   Spacing,
 } from "./post-details.styles";
-import { Thumbnail } from "@/components/thumbail";
-import { BackButton } from "@/components/back-button";
-import { ScrollArea } from "@/components/scroll-area";
 
 const route = getRouteApi("/posts/$postId");
 
