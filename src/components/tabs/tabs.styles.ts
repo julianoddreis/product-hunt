@@ -7,14 +7,14 @@ export const TabListComponent = styled.div`
   background-color: #fff;
 `;
 
-export const TabComponent = styled.button<{ isSelected: boolean }>`
+export const TabComponent = styled.button<{ selected: boolean }>`
   padding: 0.75rem 1.5rem;
   border: none;
   background: none;
   cursor: pointer;
   font-size: 1rem;
-  color: ${({ isSelected }) => (isSelected ? "#0f172a" : "#64748b")};
-  border-bottom: 2px solid ${({ isSelected }) => (isSelected ? "#0f172a" : "transparent")};
+  color: ${({ selected }) => (selected ? "#0f172a" : "#64748b")};
+  border-bottom: 2px solid ${({ selected }) => (selected ? "#0f172a" : "transparent")};
   transition: all 0.2s ease-in-out;
 
   &:hover {

@@ -45,7 +45,7 @@ export function Tab({ label, index }: TabProps) {
 
   return (
     <TabComponent
-      isSelected={isSelected}
+      selected={isSelected}
       onClick={() => setCurrent(index)}
       aria-label={label}
       role="tab"
