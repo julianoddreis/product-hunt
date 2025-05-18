@@ -26,7 +26,11 @@ export function PostList({ order }: PostListProps) {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div>
+        Error: <span>{error.message}</span>
+      </div>
+    );
   }
 
   return (

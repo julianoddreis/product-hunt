@@ -41,7 +41,7 @@ interface Params {
   readonly topic?: string;
 }
 
-interface IGetPostsResponse {
+export interface IGetPostsResponse {
   readonly posts: Array<IPost>;
   readonly pageInfo: IPageInfo;
 }
