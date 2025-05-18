@@ -4,7 +4,7 @@ import { ScrollArea } from "@/components/scroll-area";
 import { Tabs, TabList, Tab, TabPanel } from "@/components/tabs";
 import { PostsOrder } from "@/types/post";
 
-export function HomePage() {
+export function Home() {
   return (
     <>
       <NavBar />

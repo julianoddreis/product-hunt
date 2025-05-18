@@ -7,7 +7,7 @@ import { SearchProvider } from "@/providers/search";
 import * as usePostsModule from "@/queries/posts";
 import type { IGetPostsResponse } from "@/queries/posts";
 
-import { HomePage } from "./home-page";
+import { Home } from "./home";
 
 vi.mock("@/queries/posts");
 
@@ -81,7 +81,7 @@ function renderLoaded() {
 function baseRender() {
   return render(
     <SearchProvider>
-      <HomePage />
+      <Home />
     </SearchProvider>
   );
 }
